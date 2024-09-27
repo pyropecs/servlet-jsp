@@ -5,13 +5,17 @@
     <title>Products</title>
 </head>
 <body>
+    <%
+    String priceParameter = request.getParameter("price");
+    int price = Integer.parseInt(priceParameter);
+    
+    %>
+
     <h1>
-        Products
+        Products that are lesser than <%= priceParameter %> 
     </h1>
 
 <%
-String priceParameter = request.getParameter("price");
-int price = Integer.parseInt(priceParameter);
 
 FetchProducts fp = new FetchProducts();
 String[] products = fp.fetchProduct(price);
@@ -20,7 +24,7 @@ for(String product:products){
 }
 %>
 
-<%= priceParameter %>
+
 
 
 </body>

@@ -16,13 +16,16 @@ public class SearchProduct {
             JdbcConnect jdbc = new JdbcConnect();
             Connection con = jdbc.connectToDb();
             PreparedStatement statement = con.prepareStatement(query);
-            statement.setInt(1,100);
+        
+            statement.setInt(1,price);
             ResultSet rs = statement.executeQuery();
             while(rs.next()){
              
                 arr.add(rs.getString("product_name"));
             }
-            
+            rs.close();
+            statement.close();
+            con.close();
             return  arr.toArray(new String[0]);
 
         } catch (SQLException e) {
